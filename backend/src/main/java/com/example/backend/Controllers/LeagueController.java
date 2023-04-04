@@ -45,7 +45,7 @@ public class LeagueController {
         Optional<League> leagueOptional = leagueService.getLeagueByName(name);
         League optionalLeague = leagueOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
         optionalLeague.setLeague_name(league.getLeague_name());
-        League updatedLeague = leagueService.saveLeague(league);
+        League updatedLeague = leagueService.saveLeague(optionalLeague);
         return "Succesfully modified!";
     }
 

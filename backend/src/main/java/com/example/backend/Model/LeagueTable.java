@@ -1,9 +1,6 @@
 package com.example.backend.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,12 +15,9 @@ import lombok.Setter;
 public class LeagueTable {
     @Column
     private String league_name;
-    @Id
-    private String team_name;
-    @Id
-    private Integer year_start;
-    @Id
-    private Integer year_end;
+    @EmbeddedId
+    private LeagueTableEmbeddedId id;
+
     @Column
     private Integer matches;
     @Column

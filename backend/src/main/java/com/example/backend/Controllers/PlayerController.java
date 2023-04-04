@@ -44,12 +44,12 @@ public class PlayerController {
         optionalPlayer.setPosition(player.getPosition());
         optionalPlayer.setHeight(player.getHeight());
         optionalPlayer.setWeight(player.getWeight());
-        Player updatedPlayer = playerService.savePlayer(player);
+        Player updatedPlayer = playerService.savePlayer(optionalPlayer);
         return "Succesfully modified!";
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteUser(@PathVariable Integer id) {
+    public boolean deletePlayer(@PathVariable Integer id) {
         playerService.deletePlayer(id);
         return true;
     }
