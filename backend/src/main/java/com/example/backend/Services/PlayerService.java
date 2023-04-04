@@ -1,7 +1,7 @@
-package Services;
+package com.example.backend.Services;
 
-import Model.Player;
-import Repositories.PlayerRepo;
+import com.example.backend.Model.Player;
+import com.example.backend.Repositories.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

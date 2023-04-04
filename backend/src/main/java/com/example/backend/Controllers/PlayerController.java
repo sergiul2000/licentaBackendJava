@@ -1,7 +1,7 @@
-package Controllers;
+package com.example.backend.Controllers;
 
-import Model.Player;
-import Services.PlayerService;
+import com.example.backend.Model.Player;
+import com.example.backend.Services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,18 +15,18 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @GetMapping("")
+    @GetMapping(value = "")
     public List<Player> getAllPlayers() {
+        System.out.println("am ajuns aici controller!");
         return playerService.getAllPlayers();
     }
 
     @GetMapping("/{id}")
     public Optional<Player> getPlayerById(@PathVariable Integer id) {
-        System.out.println("am ajuns aici controller!");
         return playerService.getPlayerById(id);
     }
 
-    @PostMapping("")
+    @PostMapping()
     public Player saveUser(@RequestBody Player player) {
         return playerService.saveUser(player);
     }
