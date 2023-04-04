@@ -19,11 +19,10 @@ public class PlayerService {
     }
 
     public Optional<Player> getPlayerById(Integer id) {
-        System.out.println("aici am ajuns!");
         return playerRepo.findById(id);
     }
 
-    public Player saveUser(Player player) {
+    public Player savePlayer(Player player) {
         return playerRepo.save(player);
     }
 

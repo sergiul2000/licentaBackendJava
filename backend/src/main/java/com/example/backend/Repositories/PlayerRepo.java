@@ -7,6 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerRepo extends JpaRepository<Player, Integer> {
-    Optional<Player> findById(Integer id);
+//    Optional<Player> findById(Integer id);
 //    List<Player> findAll();
 }
