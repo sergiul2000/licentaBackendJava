@@ -40,6 +40,7 @@ public class TeamController {
         Optional<Team> teamOptional = teamService.getTeamByName(name);
         Team optionalTeam = teamOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
         optionalTeam.setTeam_name(team.getTeam_name());
+        teamService.deleteTeam(name);
         teamService.saveTeam(optionalTeam);
         return "Succesfully modified!";
     }

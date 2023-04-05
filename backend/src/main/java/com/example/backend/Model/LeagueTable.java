@@ -16,6 +16,7 @@ public class LeagueTable {
     @Column
     private String league_name;
     @EmbeddedId
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private LeagueTableEmbeddedId id;
 
     @Column

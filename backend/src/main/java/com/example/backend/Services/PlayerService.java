@@ -23,6 +23,8 @@ public class PlayerService {
     }
 
     public Player savePlayer(Player player) {
+        if(playerRepo.existsById(player.getId()))
+            return null;
         return playerRepo.save(player);
     }
 

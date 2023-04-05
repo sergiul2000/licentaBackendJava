@@ -23,6 +23,8 @@ public class LeagueService {
     }
 
     public League saveLeague(League league) {
+        if(leagueRepo.existsById(league.getLeague_name()))
+            return null;
         return leagueRepo.save(league);
     }
 

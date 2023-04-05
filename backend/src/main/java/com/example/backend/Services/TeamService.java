@@ -24,6 +24,8 @@ public class TeamService {
     }
 
     public Team saveTeam(Team team) {
+        if(teamRepo.existsById(team.getTeam_name()))
+            return null;
         return teamRepo.save(team);
     }
 

@@ -26,6 +26,9 @@ public class LeagueTableService {
     }
 
     public LeagueTable saveLeagueTable(LeagueTable leagueTable) {
+        if(leagueTableRepo.existsById(leagueTable.getId())){
+            return null;
+        }
         return leagueTableRepo.save(leagueTable);
     }
 

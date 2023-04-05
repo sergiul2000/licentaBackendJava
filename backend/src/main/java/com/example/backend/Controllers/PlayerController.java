@@ -44,7 +44,8 @@ public class PlayerController {
         optionalPlayer.setPosition(player.getPosition());
         optionalPlayer.setHeight(player.getHeight());
         optionalPlayer.setWeight(player.getWeight());
-        Player updatedPlayer = playerService.savePlayer(optionalPlayer);
+        playerService.deletePlayer(id);
+        playerService.savePlayer(optionalPlayer);
         return "Succesfully modified!";
     }
 

@@ -38,16 +38,30 @@ public class LeagueTableController {
                                     @PathVariable Integer yearEnd,
                                     @RequestBody LeagueTable leagueTable) throws ChangeSetPersister.NotFoundException {
         Optional<LeagueTable> existingLeagueTable = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
-        if(existingLeagueTable == null) {
+        if(existingLeagueTable.isEmpty()) {
             return "Not found";
         }
         Optional<LeagueTable> leagueTableOptional = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
         LeagueTable optionalLeagueTable = leagueTableOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-//        optionalLeagueTable.setName(player.getName());
-//        optionalPlayer.setAge(player.getAge());
-//        optionalPlayer.setPosition(player.getPosition());
-//        optionalPlayer.setHeight(player.getHeight());
-//        optionalPlayer.setWeight(player.getWeight());
+        optionalLeagueTable.setLeague_name(leagueTable.getLeague_name());
+        optionalLeagueTable.setId(leagueTable.getId());
+        optionalLeagueTable.setMatches(leagueTable.getMatches());
+        optionalLeagueTable.setWins(leagueTable.getWins());
+        optionalLeagueTable.setDraws(leagueTable.getDraws());
+        optionalLeagueTable.setLoses(leagueTable.getLoses());
+        optionalLeagueTable.setGoals(leagueTable.getGoals());
+        optionalLeagueTable.setGoals_against(leagueTable.getGoals_against());
+        optionalLeagueTable.setPoints(leagueTable.getPoints());
+        optionalLeagueTable.setXgoals(leagueTable.getXgoals());
+        optionalLeagueTable.setNpx_goals(leagueTable.getNpx_goals());
+        optionalLeagueTable.setXassists(leagueTable.getXassists());
+        optionalLeagueTable.setNpx_goals_against(leagueTable.getNpx_goals_against());
+        optionalLeagueTable.setNpx_goals_difference(leagueTable.getNpx_goals_difference());
+        optionalLeagueTable.setPpda(leagueTable.getPpda());
+        optionalLeagueTable.setOppda(leagueTable.getOppda());
+        optionalLeagueTable.setDc(leagueTable.getDc());
+        optionalLeagueTable.setOdc(leagueTable.getOdc());
+        leagueTableService.deleteLeagueTable(teamName,yearStart,yearEnd);
         leagueTableService.saveLeagueTable(optionalLeagueTable);
         return "Succesfully modified!";
     }
