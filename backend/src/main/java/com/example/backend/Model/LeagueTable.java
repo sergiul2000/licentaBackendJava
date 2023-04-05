@@ -1,5 +1,6 @@
 package com.example.backend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,5 +55,9 @@ public class LeagueTable {
     @Column
     private double odc;
 
-
+//    @MapsId("league_name")
+//    @JsonIgnoreProperties
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "league_name", nullable = false)
+//    private League league_name;
 }

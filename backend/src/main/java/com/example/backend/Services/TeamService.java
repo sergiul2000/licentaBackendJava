@@ -1,8 +1,6 @@
 package com.example.backend.Services;
 
-import com.example.backend.Model.League;
 import com.example.backend.Model.Team;
-import com.example.backend.Repositories.LeagueRepo;
 import com.example.backend.Repositories.TeamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

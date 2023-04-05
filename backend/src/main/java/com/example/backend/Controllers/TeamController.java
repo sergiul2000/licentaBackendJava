@@ -1,8 +1,6 @@
 package com.example.backend.Controllers;
 
-import com.example.backend.Model.League;
 import com.example.backend.Model.Team;
-import com.example.backend.Services.LeagueService;
 import com.example.backend.Services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;

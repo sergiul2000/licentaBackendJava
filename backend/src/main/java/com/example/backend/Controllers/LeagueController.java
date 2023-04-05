@@ -1,18 +1,12 @@
 package com.example.backend.Controllers;
 
 import com.example.backend.Model.League;
-import com.example.backend.Model.Player;
 import com.example.backend.Services.LeagueService;
-import com.example.backend.Services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
