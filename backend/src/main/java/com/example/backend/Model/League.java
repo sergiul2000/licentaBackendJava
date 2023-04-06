@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +22,10 @@ public class League {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String league_name;
 
+    public League(String league_name) {
+        this.league_name = league_name;
+    }
 
-//    @OneToMany(mappedBy = "leagueName", cascade = CascadeType.ALL)
-//    private List<LeagueTable> leagueTables;
+    @OneToMany(targetEntity = LeagueTable.class,mappedBy = "league_name", cascade = CascadeType.ALL)
+    private List<LeagueTable> leagueTables=new ArrayList<>();
 }

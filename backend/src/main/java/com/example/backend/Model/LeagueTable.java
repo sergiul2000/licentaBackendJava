@@ -14,8 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LeagueTable {
-    @Column
-    private String league_name;
+//    @Column
+//    private String league_name;
+
     @EmbeddedId
     @GeneratedValue(strategy = GenerationType.AUTO)
     private LeagueTableEmbeddedId id;
@@ -32,19 +33,19 @@ public class LeagueTable {
     @Column
     private Integer goals;
     @Column
-    private Integer goals_against;
+    private Integer goalsAgainst;
     @Column
-    private Integer points;
+    private Integer pts;
     @Column
-    private double xgoals;
+    private double xGoals;
     @Column
-    private double npx_goals;
+    private double npxGoals;
     @Column
-    private double xassists;
+    private double xGoalsAgainst;
     @Column
-    private double npx_goals_against;
+    private double npxGoalsAgainst;
     @Column
-    private double npx_goals_difference;
+    private double npxGoalsDifference;
     @Column
     private double ppda;
     @Column
@@ -57,7 +58,17 @@ public class LeagueTable {
 
 //    @MapsId("league_name")
 //    @JsonIgnoreProperties
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "league_name", nullable = false)
-//    private League league_name;
+
+//    @JsonIgnoreProperties
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "league_name", nullable = false,referencedColumnName = "league_name")
+    private League league_name;
+
+    public String getLeague_name() {
+        return league_name.getLeague_name();
+    }
+    public void setLeague_name(String leagueName) {
+        League league = new League(leagueName);
+        this.league_name = league;
+    }
 }

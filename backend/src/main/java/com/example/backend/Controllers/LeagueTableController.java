@@ -42,20 +42,20 @@ public class LeagueTableController {
         }
         Optional<LeagueTable> leagueTableOptional = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
         LeagueTable optionalLeagueTable = leagueTableOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-        optionalLeagueTable.setLeague_name(leagueTable.getLeague_name());
+//        optionalLeagueTable.setLeague_name(leagueTable.getLeague_name());
         optionalLeagueTable.setId(leagueTable.getId());
         optionalLeagueTable.setMatches(leagueTable.getMatches());
         optionalLeagueTable.setWins(leagueTable.getWins());
         optionalLeagueTable.setDraws(leagueTable.getDraws());
         optionalLeagueTable.setLoses(leagueTable.getLoses());
         optionalLeagueTable.setGoals(leagueTable.getGoals());
-        optionalLeagueTable.setGoals_against(leagueTable.getGoals_against());
-        optionalLeagueTable.setPoints(leagueTable.getPoints());
-        optionalLeagueTable.setXgoals(leagueTable.getXgoals());
-        optionalLeagueTable.setNpx_goals(leagueTable.getNpx_goals());
-        optionalLeagueTable.setXassists(leagueTable.getXassists());
-        optionalLeagueTable.setNpx_goals_against(leagueTable.getNpx_goals_against());
-        optionalLeagueTable.setNpx_goals_difference(leagueTable.getNpx_goals_difference());
+        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
+        optionalLeagueTable.setPts(leagueTable.getPts());
+        optionalLeagueTable.setXGoals(leagueTable.getXGoals());
+        optionalLeagueTable.setNpxGoals(leagueTable.getNpxGoals());
+        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
+        optionalLeagueTable.setNpxGoalsAgainst(leagueTable.getNpxGoalsAgainst());
+        optionalLeagueTable.setNpxGoalsDifference(leagueTable.getNpxGoalsDifference());
         optionalLeagueTable.setPpda(leagueTable.getPpda());
         optionalLeagueTable.setOppda(leagueTable.getOppda());
         optionalLeagueTable.setDc(leagueTable.getDc());
