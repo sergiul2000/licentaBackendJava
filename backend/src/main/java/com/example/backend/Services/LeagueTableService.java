@@ -25,6 +25,7 @@ public class LeagueTableService {
 
     public Optional<LeagueTable> getLeagueTableById(String teamName,Integer yearStart, Integer yearEnd) {
         LeagueTableEmbeddedId id = new LeagueTableEmbeddedId(teamName,yearStart,yearEnd);
+//        System.out.println(id.getTeam()+id.getYear_start()+id.getYear_end());
         return leagueTableRepo.findById(id);
     }
 
