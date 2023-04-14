@@ -44,6 +44,7 @@ public class FixturesController {
         optionalFixtures.setHome_goals(fixtures.getHome_goals());
         optionalFixtures.setAway_goals(fixtures.getAway_goals());
         optionalFixtures.setDatetime(fixtures.getDatetime());
+        fixturesService.deleteFixtures(id);
         fixturesService.saveFixtures(optionalFixtures);
         return "Succesfully modified!";
     }

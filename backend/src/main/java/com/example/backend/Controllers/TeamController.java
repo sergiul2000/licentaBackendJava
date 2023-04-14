@@ -43,6 +43,8 @@ public class TeamController {
         return "Succesfully modified!";
     }
 
+
+
     @DeleteMapping("/{name}")
     public boolean deleteUser(@PathVariable String name) {
         teamService.deleteTeam(name);

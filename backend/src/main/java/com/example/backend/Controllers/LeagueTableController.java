@@ -7,6 +7,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,5 +71,17 @@ public class LeagueTableController {
                                      @PathVariable Integer yearEnd) {
         leagueTableService.deleteLeagueTable(teamName,yearStart, yearEnd);
         return true;
+    }
+
+    @GetMapping("/{teamName}")
+    public List<LeagueTable> getLeagueTableByTeamName(@PathVariable String teamName) {
+        List<LeagueTable>response = new ArrayList<>();
+        List<LeagueTable>leagueTables = leagueTableService.getAllLeagueTables();
+        for(LeagueTable leagueTable:leagueTables){
+            if(leagueTable.getId().getTeam().equals(teamName)){
+                response.add(leagueTable);
+            }
+        }
+        return response;
     }
 }

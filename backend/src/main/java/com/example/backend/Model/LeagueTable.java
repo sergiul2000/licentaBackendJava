@@ -16,7 +16,9 @@ import lombok.Setter;
 public class LeagueTable {
 //    @Column
 //    private String league_name;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "league_name", nullable = false,referencedColumnName = "league_name")
+    private League league_name;
     @EmbeddedId
     @GeneratedValue(strategy = GenerationType.AUTO)
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -62,9 +64,7 @@ public class LeagueTable {
 //    @JsonIgnoreProperties
 
 //    @JsonIgnoreProperties
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "league_name", nullable = false,referencedColumnName = "league_name")
-    private League league_name;
+
 
 
 
@@ -103,4 +103,5 @@ public class LeagueTable {
         this.odc = odc;
         this.league_name = league_name;
     }
+
 }

@@ -26,6 +26,7 @@ public class League {
 //        this.league_name = league_name;
 //    }
 
-//    @OneToMany(targetEntity = LeagueTable.class,mappedBy = "league_name", cascade = CascadeType.ALL)
-//    private List<LeagueTable> leagueTables=new ArrayList<>();
+//    @ElementCollection
+////    @OneToMany(targetEntity = LeagueTable.class,mappedBy = "league_name", cascade = CascadeType.ALL)
+//    private List<LeagueTableEmbeddedId> leagueTables=new ArrayList<>();
 }

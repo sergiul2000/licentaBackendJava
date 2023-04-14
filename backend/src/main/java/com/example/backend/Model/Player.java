@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +21,7 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer player_id;
 
     @Column(nullable = false)
     private String name;
@@ -32,17 +34,23 @@ public class Player {
     @Column()
     private Integer weight;
 
-
+    public Player(Integer player_id) {
+        this.player_id = player_id;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Player player)) return false;
-        return getId().equals(player.getId());
+        return getPlayer_id().equals(player.getPlayer_id());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getPlayer_id());
     }
+
+//    @ElementCollection
+////    @OneToMany(targetEntity = LeagueTable.class,mappedBy = "league_name", cascade = CascadeType.ALL)
+//    private List<RostersEmbeddedId> rosters=new ArrayList<>();
 }
