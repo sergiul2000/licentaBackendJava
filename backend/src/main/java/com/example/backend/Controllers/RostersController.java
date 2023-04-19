@@ -31,6 +31,12 @@ public class RostersController {
 //        return rostersService.getRostersById(teamName,id_player,yearStart,yearEnd);
 //    }
 
+    @DeleteMapping(value = "{id}")
+    public boolean deleteById(@PathVariable Integer id){
+        return rostersService.deleteRostersById(id);
+
+    }
+
     @PostMapping()
     public Rosters saveRosters(@RequestBody Rosters rosters) {
         System.out.println(rosters.getId_roster().getClass()+" "+rosters.getTeam().getClass()+" "+rosters.getPlayer_id().getClass()+" ");

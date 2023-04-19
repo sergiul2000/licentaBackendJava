@@ -47,7 +47,7 @@ public class TeamController {
 
     @DeleteMapping("/{name}")
     public boolean deleteUser(@PathVariable String name) {
-        teamService.deleteTeam(name);
-        return true;
+        return teamService.deleteTeam(name);
+//        return true;
     }
 }

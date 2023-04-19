@@ -28,7 +28,11 @@ public class PlayerService {
         return playerRepo.save(player);
     }
 
-    public void deletePlayer(Integer id) {
-        playerRepo.deleteById(id);
+    public boolean deletePlayer(Integer id) {
+        if(playerRepo.existsById(id)){
+            playerRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

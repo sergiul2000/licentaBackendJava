@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class League {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private String league_name;
 
 //    public League(String league_name) {

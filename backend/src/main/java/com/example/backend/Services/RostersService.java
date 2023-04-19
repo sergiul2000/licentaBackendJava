@@ -29,9 +29,13 @@ public class RostersService {
         return rostersRepo.save(rosters);
     }
 
-    public void deleteRostersById(Integer id){//(String teamName, Integer idPlayer,Integer yearStart,Integer yearEnd) {
+    public boolean deleteRostersById(Integer id){//(String teamName, Integer idPlayer,Integer yearStart,Integer yearEnd) {
 //        RostersEmbeddedId id = new RostersEmbeddedId(teamName,idPlayer,yearStart,yearEnd);
-        rostersRepo.deleteById(id);
+        if(rostersRepo.existsById(id)){
+            rostersRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteRostersByAllFields(String teamName,Integer idPlayer,Integer yearStart,Integer yearEnd){//(String teamName, Integer idPlayer,Integer yearStart,Integer yearEnd) {

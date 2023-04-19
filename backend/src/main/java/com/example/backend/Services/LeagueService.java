@@ -27,7 +27,11 @@ public class LeagueService {
         return leagueRepo.save(league);
     }
 
-    public void deleteLeague(String name) {
-        leagueRepo.deleteById(name);
+    public boolean deleteLeague(String name) {
+        if(leagueRepo.existsById(name)){
+            leagueRepo.deleteById(name);
+            return true;
+        }
+        return false;
     }
 }

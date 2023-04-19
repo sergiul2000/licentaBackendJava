@@ -51,7 +51,7 @@ public class FixturesController {
 
     @DeleteMapping("/{id}")
     public boolean deleteFixtures(@PathVariable Integer id) {
-        fixturesService.deleteFixtures(id);
-        return true;
+        return fixturesService.deleteFixtures(id);
+//        return true;
     }
 }

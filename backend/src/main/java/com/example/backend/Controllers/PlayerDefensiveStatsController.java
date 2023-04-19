@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/football-analytics/playerDefensive")
@@ -34,4 +35,27 @@ public class PlayerDefensiveStatsController {
 //        System.out.println(playerDefensiveStats.toString());
         return playerDefensiveStatsService.savePlayerDefensive(playerDefensiveStats);
     }
+
+    @GetMapping(value = "{id}")
+    public Optional<PlayerDefensiveStats> getById(@PathVariable Integer id) {
+        return playerDefensiveStatsService.getById(id);
+    }
+
+    @DeleteMapping(value = "{id}")
+    public boolean deleteById(@PathVariable Integer id){
+        return playerDefensiveStatsService.deleteById(id);
+    }
+
+    @PutMapping(value = "{id}")
+    public PlayerDefensiveStats update(@PathVariable Integer id,@RequestBody PlayerDefensiveStats playerDefensiveStats){
+        Optional<PlayerDefensiveStats> existingObject = playerDefensiveStatsService.getById(id);
+        if(existingObject.isEmpty()){
+            return null;
+        }
+        PlayerDefensiveStats modifiedObject = existingObject.get();
+        playerDefensiveStatsService.deleteById(id);
+        return playerDefensiveStatsService.savePlayerDefensive(playerDefensiveStats);
+
+    }
+
 }

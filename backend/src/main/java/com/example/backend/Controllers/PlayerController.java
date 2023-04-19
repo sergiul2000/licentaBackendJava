@@ -50,7 +50,7 @@ public class PlayerController {
 
     @DeleteMapping("/{id}")
     public boolean deletePlayer(@PathVariable Integer id) {
-        playerService.deletePlayer(id);
-        return true;
+        return  playerService.deletePlayer(id);
+//        return true;
     }
 }

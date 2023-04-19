@@ -46,7 +46,7 @@ public class LeagueController {
 
     @DeleteMapping("/{name}")
     public boolean deleteUser(@PathVariable String name) {
-        leagueService.deleteLeague(name);
-        return true;
+        return leagueService.deleteLeague(name);
+//        return true;
     }
 }

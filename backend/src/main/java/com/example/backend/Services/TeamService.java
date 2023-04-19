@@ -27,7 +27,11 @@ public class TeamService {
         return teamRepo.save(team);
     }
 
-    public void deleteTeam(String name) {
-        teamRepo.deleteById(name);
+    public boolean deleteTeam(String name) {
+        if(teamRepo.existsById(name)){
+            teamRepo.deleteById(name);
+            return true;
+        }
+        return false;
     }
 }

@@ -27,7 +27,11 @@ public class FixturesService {
         return fixturesRepo.save(fixtures);
     }
 
-    public void deleteFixtures(Integer id) {
-        fixturesRepo.deleteById(id);
+    public boolean deleteFixtures(Integer id) {
+        if(fixturesRepo.existsById(id)){
+            fixturesRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
