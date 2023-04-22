@@ -19,6 +19,8 @@ public class PlayerDefensiveStatsController {
 //    @Autowired
 //    private RostersService rostersService;
 
+//    @CrossOrigin(origins = "http://localhost/football-analytics/playerDefensive:3000")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<PlayerDefensiveStats> getAllPlayerDefensive() {
         return playerDefensiveStatsService.getAllPlayersDefensiveStats();
@@ -56,6 +58,13 @@ public class PlayerDefensiveStatsController {
         playerDefensiveStatsService.deleteById(id);
         return playerDefensiveStatsService.savePlayerDefensive(playerDefensiveStats);
 
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(value = "/{team_name}/{year_start}")
+    public List<PlayerDefensiveStats> getAllPlayerDefensiveByTeamAndYearStart(@PathVariable String team_name,
+                                                                              @PathVariable Integer year_start) {
+        return playerDefensiveStatsService.getPlayersDefensiveStatsByTeamAndYearStart(team_name,year_start);
     }
 
 }

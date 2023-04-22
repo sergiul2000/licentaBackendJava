@@ -37,7 +37,7 @@ public class PlayerDefensiveStats {
     private double tackles_per_game;
 
     @Column
-    private String team_name;
+    private String   team_name;
     @Column
     private Integer year_start;
     @Column
