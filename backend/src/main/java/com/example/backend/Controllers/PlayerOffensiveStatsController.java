@@ -1,6 +1,7 @@
 package com.example.backend.Controllers;
 
 
+import com.example.backend.Model.PlayerDefensiveStats;
 import com.example.backend.Model.PlayerOffensiveStats;
 import com.example.backend.Services.PlayerOffensiveStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,11 @@ public class PlayerOffensiveStatsController {
         PlayerOffensiveStats modifiedObject = existingObject.get();
         playerOffensiveStatsService.deleteById(id);
         return playerOffensiveStatsService.savePlayerOffensive(playerOffensiveStats);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(value = "/{team_name}/{year_start}")
+    public List<PlayerOffensiveStats> getAllPlayerOffensiveByTeamAndYearStart(@PathVariable String team_name,
+                                                                              @PathVariable Integer year_start) {
+        return playerOffensiveStatsService.getPlayersDefensiveStatsByTeamAndYearStart(team_name,year_start);
     }
 }

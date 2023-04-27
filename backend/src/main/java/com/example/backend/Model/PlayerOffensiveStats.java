@@ -17,6 +17,8 @@ public class PlayerOffensiveStats {
 //    @GeneratedValue
     private Integer offensive_id;
     @Column
+    private String player_name;
+    @Column
     private String team_name;
     @Column
     private Integer id_player;
@@ -53,8 +55,9 @@ public class PlayerOffensiveStats {
         this.id_roster = rosters;
     }
 
-    public PlayerOffensiveStats(Integer offensive_id, String team_name, Integer id_player, Integer year_start, Integer year_end, double dribbles_per_game, double fouled_per_game, double offsides_per_game, double dispossessed_per_game, double bad_control_per_game, Integer id_roster) {
+    public PlayerOffensiveStats(Integer offensive_id, String player_name,String team_name, Integer id_player, Integer year_start, Integer year_end, double dribbles_per_game, double fouled_per_game, double offsides_per_game, double dispossessed_per_game, double bad_control_per_game, Integer id_roster) {
         this.offensive_id = offensive_id;
+        this.player_name = player_name;
         this.team_name = team_name;
         this.id_player = id_player;
         this.year_start = year_start;
@@ -72,6 +75,7 @@ public class PlayerOffensiveStats {
     public String toString() {
         return "PlayerOffensiveStats{" +
                 "offensive_id=" + offensive_id +
+                "player_name=" + player_name +
                 ", team_name='" + team_name + '\'' +
                 ", id_player=" + id_player +
                 ", year_start=" + year_start +

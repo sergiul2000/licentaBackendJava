@@ -7,6 +7,7 @@ import com.example.backend.Repositories.PlayerOffensiveStatsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,18 @@ public class PlayerOffensiveStatsService {
             return true;
         }
         return false;
+    }
+
+    public List<PlayerOffensiveStats> getPlayersDefensiveStatsByTeamAndYearStart(String teamName,Integer yearStart) {
+        List<PlayerOffensiveStats> response = new ArrayList<>();
+        List<PlayerOffensiveStats> allPlayers =  playerOffensiveStatsRepo.findAll();
+        for(PlayerOffensiveStats iterator : allPlayers){
+            if(iterator.getTeam_name().equals(teamName) && (iterator.getYear_start().intValue() == yearStart.intValue())){
+
+//                System.out.println(iterator.getTeam_name()+" "+(iterator.getYear_start() == yearStart));
+                response.add(iterator);
+            }
+        }
+        return response;
     }
 }
