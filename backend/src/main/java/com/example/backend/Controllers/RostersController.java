@@ -17,6 +17,7 @@ public class RostersController {
     @Autowired
     private RostersService rostersService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<Rosters> getAllRosters() {
         return rostersService.getAllRosters();
@@ -31,18 +32,21 @@ public class RostersController {
 //        return rostersService.getRostersById(teamName,id_player,yearStart,yearEnd);
 //    }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(value = "{id}")
     public boolean deleteById(@PathVariable Integer id){
         return rostersService.deleteRostersById(id);
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public Rosters saveRosters(@RequestBody Rosters rosters) {
         System.out.println(rosters.getId_roster().getClass()+" "+rosters.getTeam().getClass()+" "+rosters.getPlayer_id().getClass()+" ");
         return rostersService.saveRosters(rosters);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{teamName}/{id_player}/{yearStart}/{yearEnd}")
     public String updateRosters(@PathVariable String teamName,
                                     @PathVariable  Integer id_player,
@@ -67,6 +71,7 @@ public class RostersController {
         rostersService.saveRosters(rostersOptional);
         return "Succesfully modified!";
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{teamName}/{id_player}/{yearStart}/{yearEnd}")
     public boolean deleteRostersById(@PathVariable String teamName,
                                             @PathVariable Integer id_player,
@@ -77,6 +82,7 @@ public class RostersController {
         return response;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id_player}")
     public List<Rosters> getRostersByPlayerId(@PathVariable Integer id_player) {
         List<Rosters> responseList = new ArrayList<>();
@@ -94,6 +100,7 @@ public class RostersController {
         return responseList;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{teamName}/{id_player}/{yearStart}/{yearEnd}")
     public List<Rosters> getRostersByAllFields(@PathVariable String teamName,
                                               @PathVariable Integer id_player,

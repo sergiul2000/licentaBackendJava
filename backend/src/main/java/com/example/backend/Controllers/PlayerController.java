@@ -16,20 +16,25 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<Player> getAllPlayers() {
         return playerService.getAllPlayers();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public Optional<Player> getPlayerById(@PathVariable Integer id) {
         return playerService.getPlayerById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public Player savePlayer(@RequestBody Player player) {
         return playerService.savePlayer(player);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{id}")
     public String updatePLayer(@PathVariable(value = "id") Integer id, @RequestBody Player player) throws ChangeSetPersister.NotFoundException {
         Optional<Player> existingPlayer = playerService.getPlayerById(id);
@@ -48,6 +53,7 @@ public class PlayerController {
         return "Succesfully modified!";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public boolean deletePlayer(@PathVariable Integer id) {
         return  playerService.deletePlayer(id);

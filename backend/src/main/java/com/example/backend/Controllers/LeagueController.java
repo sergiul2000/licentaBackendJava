@@ -16,20 +16,25 @@ public class LeagueController {
     @Autowired
     private LeagueService leagueService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<League> getAllLeagues() throws IOException {
         return leagueService.getAllLeagues();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{name}")
     public Optional<League> getLeagueByName(@PathVariable String name) {
         return leagueService.getLeagueByName(name);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public League saveLeague(@RequestBody League league) {
         return leagueService.saveLeague(league);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{name}")
     public String updateLeague(@PathVariable(value = "name") String name, @RequestBody League league) throws ChangeSetPersister.NotFoundException {
         Optional<League> existingLeague = leagueService.getLeagueByName(name);
@@ -44,6 +49,7 @@ public class LeagueController {
         return "Succesfully modified!";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{name}")
     public boolean deleteUser(@PathVariable String name) {
         return leagueService.deleteLeague(name);

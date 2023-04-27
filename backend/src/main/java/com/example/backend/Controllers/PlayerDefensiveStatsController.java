@@ -26,6 +26,7 @@ public class PlayerDefensiveStatsController {
         return playerDefensiveStatsService.getAllPlayersDefensiveStats();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public PlayerDefensiveStats savePlayerDefensive(@RequestBody PlayerDefensiveStats playerDefensiveStats) {
 //        Integer idRoster = rostersService.getRostersIdByAllFields(playerDefensiveStats.getTeam_name(), playerDefensiveStats.getId_player(),
@@ -38,16 +39,19 @@ public class PlayerDefensiveStatsController {
         return playerDefensiveStatsService.savePlayerDefensive(playerDefensiveStats);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "{id}")
     public Optional<PlayerDefensiveStats> getById(@PathVariable Integer id) {
         return playerDefensiveStatsService.getById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(value = "{id}")
     public boolean deleteById(@PathVariable Integer id){
         return playerDefensiveStatsService.deleteById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "{id}")
     public PlayerDefensiveStats update(@PathVariable Integer id,@RequestBody PlayerDefensiveStats playerDefensiveStats){
         Optional<PlayerDefensiveStats> existingObject = playerDefensiveStatsService.getById(id);

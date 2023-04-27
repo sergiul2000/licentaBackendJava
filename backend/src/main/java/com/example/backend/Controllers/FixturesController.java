@@ -16,20 +16,25 @@ public class FixturesController {
     @Autowired
     private FixturesService fixturesService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<Fixtures> getAllFixtures() {
         return fixturesService.getAllFixtures();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public Optional<Fixtures> getFixturesById(@PathVariable Integer id) {
         return fixturesService.getFixturesById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public Fixtures saveFixtures(@RequestBody Fixtures fixtures) {
         return fixturesService.saveFixtures(fixtures);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{id}")
     public String updateFixtures(@PathVariable(value = "id") Integer id, @RequestBody Fixtures fixtures) throws ChangeSetPersister.NotFoundException {
         Optional<Fixtures> existingFixtures = fixturesService.getFixturesById(id);
@@ -49,6 +54,8 @@ public class FixturesController {
         return "Succesfully modified!";
     }
 
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public boolean deleteFixtures(@PathVariable Integer id) {
         return fixturesService.deleteFixtures(id);

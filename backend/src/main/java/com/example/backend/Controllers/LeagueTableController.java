@@ -16,22 +16,28 @@ import java.util.Optional;
 public class LeagueTableController {
     @Autowired
     private LeagueTableService leagueTableService;
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<LeagueTable> getAllLeagueTables() throws IOException {
         return leagueTableService.getAllLeagueTables();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{teamName}/{yearStart}/{yearEnd}")
     public Optional<LeagueTable> getLeagueTableById(@PathVariable String teamName,
                                                     @PathVariable Integer yearStart,
                                                     @PathVariable Integer yearEnd) {
         return leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public LeagueTable saveLeagueTable(@RequestBody LeagueTable leagueTable) {
         return leagueTableService.saveLeagueTable(leagueTable);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{teamName}/{yearStart}/{yearEnd}")
     public String updateLeagueTable(@PathVariable String teamName,
                                     @PathVariable Integer yearStart,
@@ -65,6 +71,8 @@ public class LeagueTableController {
         leagueTableService.saveLeagueTable(optionalLeagueTable);
         return "Succesfully modified!";
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{teamName}/{yearStart}/{yearEnd}")
     public boolean deleteLeagueTable(@PathVariable String teamName,
                                      @PathVariable Integer yearStart,
@@ -73,6 +81,7 @@ public class LeagueTableController {
         return true;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{teamName}")
     public List<LeagueTable> getLeagueTableByTeamName(@PathVariable String teamName) {
         List<LeagueTable>response = new ArrayList<>();

@@ -15,20 +15,25 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "")
     public List<Team> getAllLeagues() throws IOException {
         return teamService.getAllTeams();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{name}")
     public Optional<Team> getLeagueByName(@PathVariable String name) {
         return teamService.getTeamByName(name);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping()
     public Team saveLeague(@RequestBody Team team) {
         return teamService.saveTeam(team);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{name}")
     public String updateLeague(@PathVariable(value = "name") String name, @RequestBody Team team) throws ChangeSetPersister.NotFoundException {
         Optional<Team> existingTeam = teamService.getTeamByName(name);
@@ -45,6 +50,7 @@ public class TeamController {
 
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{name}")
     public boolean deleteUser(@PathVariable String name) {
         return teamService.deleteTeam(name);
