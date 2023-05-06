@@ -11,9 +11,9 @@ import java.util.Optional;
 import java.util.OptionalInt;
 
 @Repository
-public interface LeagueTableRepo extends JpaRepository<LeagueTable,LeagueTableEmbeddedId> {
-    Optional<LeagueTable> findLeagueTableById(LeagueTableEmbeddedId id);
-    void deleteById(LeagueTableEmbeddedId id);
+public interface LeagueTableRepo extends JpaRepository<LeagueTable,Integer> {
+//    Optional<LeagueTable> findLeagueTableById(Integer id);
+//    void deleteById(LeagueTableEmbeddedId id);
 
 //    List<LeagueTable> findByLeague(LeagueTableEmbeddedId id);
 }

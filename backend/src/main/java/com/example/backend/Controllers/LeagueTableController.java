@@ -24,11 +24,11 @@ public class LeagueTableController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/{teamName}/{yearStart}/{yearEnd}")
-    public Optional<LeagueTable> getLeagueTableById(@PathVariable String teamName,
-                                                    @PathVariable Integer yearStart,
-                                                    @PathVariable Integer yearEnd) {
-        return leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
+    @GetMapping("/{id}")
+    public Optional<LeagueTable> getLeagueTableById(//@PathVariable String teamName,
+                                                    //@PathVariable Integer yearStart,
+                                                    @PathVariable Integer id) {
+        return leagueTableService.getLeagueTableById(id);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -37,60 +37,60 @@ public class LeagueTableController {
         return leagueTableService.saveLeagueTable(leagueTable);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/{teamName}/{yearStart}/{yearEnd}")
-    public String updateLeagueTable(@PathVariable String teamName,
-                                    @PathVariable Integer yearStart,
-                                    @PathVariable Integer yearEnd,
-                                    @RequestBody LeagueTable leagueTable) throws ChangeSetPersister.NotFoundException {
-        Optional<LeagueTable> existingLeagueTable = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
-        if(existingLeagueTable.isEmpty()) {
-            return "Not found";
-        }
-        Optional<LeagueTable> leagueTableOptional = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
-        LeagueTable optionalLeagueTable = leagueTableOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-//        optionalLeagueTable.setLeague_name(leagueTable.getLeague_name());
-        optionalLeagueTable.setId(leagueTable.getId());
-        optionalLeagueTable.setMatches(leagueTable.getMatches());
-        optionalLeagueTable.setWins(leagueTable.getWins());
-        optionalLeagueTable.setDraws(leagueTable.getDraws());
-        optionalLeagueTable.setLoses(leagueTable.getLoses());
-        optionalLeagueTable.setGoals(leagueTable.getGoals());
-        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
-        optionalLeagueTable.setPts(leagueTable.getPts());
-        optionalLeagueTable.setXGoals(leagueTable.getXGoals());
-        optionalLeagueTable.setNpxGoals(leagueTable.getNpxGoals());
-        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
-        optionalLeagueTable.setNpxGoalsAgainst(leagueTable.getNpxGoalsAgainst());
-        optionalLeagueTable.setNpxGoalsDifference(leagueTable.getNpxGoalsDifference());
-        optionalLeagueTable.setPpda(leagueTable.getPpda());
-        optionalLeagueTable.setOppda(leagueTable.getOppda());
-        optionalLeagueTable.setDc(leagueTable.getDc());
-        optionalLeagueTable.setOdc(leagueTable.getOdc());
-        leagueTableService.deleteLeagueTable(teamName,yearStart,yearEnd);
-        leagueTableService.saveLeagueTable(optionalLeagueTable);
-        return "Succesfully modified!";
-    }
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @PutMapping("/{teamName}/{yearStart}/{yearEnd}")
+//    public String updateLeagueTable(@PathVariable String teamName,
+//                                    @PathVariable Integer yearStart,
+//                                    @PathVariable Integer yearEnd,
+//                                    @RequestBody LeagueTable leagueTable) throws ChangeSetPersister.NotFoundException {
+//        Optional<LeagueTable> existingLeagueTable = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
+//        if(existingLeagueTable.isEmpty()) {
+//            return "Not found";
+//        }
+//        Optional<LeagueTable> leagueTableOptional = leagueTableService.getLeagueTableById(teamName,yearStart,yearEnd);
+//        LeagueTable optionalLeagueTable = leagueTableOptional.orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+////        optionalLeagueTable.setLeague_name(leagueTable.getLeague_name());
+//        optionalLeagueTable.setId(leagueTable.getId());
+//        optionalLeagueTable.setMatches(leagueTable.getMatches());
+//        optionalLeagueTable.setWins(leagueTable.getWins());
+//        optionalLeagueTable.setDraws(leagueTable.getDraws());
+//        optionalLeagueTable.setLoses(leagueTable.getLoses());
+//        optionalLeagueTable.setGoals(leagueTable.getGoals());
+//        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
+//        optionalLeagueTable.setPts(leagueTable.getPts());
+//        optionalLeagueTable.setXGoals(leagueTable.getXGoals());
+//        optionalLeagueTable.setNpxGoals(leagueTable.getNpxGoals());
+//        optionalLeagueTable.setGoalsAgainst(leagueTable.getGoalsAgainst());
+//        optionalLeagueTable.setNpxGoalsAgainst(leagueTable.getNpxGoalsAgainst());
+//        optionalLeagueTable.setNpxGoalsDifference(leagueTable.getNpxGoalsDifference());
+//        optionalLeagueTable.setPpda(leagueTable.getPpda());
+//        optionalLeagueTable.setOppda(leagueTable.getOppda());
+//        optionalLeagueTable.setDc(leagueTable.getDc());
+//        optionalLeagueTable.setOdc(leagueTable.getOdc());
+//        leagueTableService.deleteLeagueTable(teamName,yearStart,yearEnd);
+//        leagueTableService.saveLeagueTable(optionalLeagueTable);
+//        return "Succesfully modified!";
+//    }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @DeleteMapping("/{teamName}/{yearStart}/{yearEnd}")
-    public boolean deleteLeagueTable(@PathVariable String teamName,
-                                     @PathVariable Integer yearStart,
-                                     @PathVariable Integer yearEnd) {
-        leagueTableService.deleteLeagueTable(teamName,yearStart, yearEnd);
+    @DeleteMapping("/{id}")
+    public boolean deleteLeagueTable(//@PathVariable String teamName,
+                                     //@PathVariable Integer yearStart,
+                                     @PathVariable Integer id) {
+        leagueTableService.deleteLeagueTable(id);
         return true;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/{teamName}")
-    public List<LeagueTable> getLeagueTableByTeamName(@PathVariable String teamName) {
-        List<LeagueTable>response = new ArrayList<>();
-        List<LeagueTable>leagueTables = leagueTableService.getAllLeagueTables();
-        for(LeagueTable leagueTable:leagueTables){
-            if(leagueTable.getId().getTeam().equals(teamName)){
-                response.add(leagueTable);
-            }
-        }
-        return response;
-    }
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @GetMapping("/{teamName}")
+//    public List<LeagueTable> getLeagueTableByTeamName(@PathVariable String teamName) {
+//        List<LeagueTable>response = new ArrayList<>();
+//        List<LeagueTable>leagueTables = leagueTableService.getAllLeagueTables();
+//        for(LeagueTable leagueTable:leagueTables){
+//            if(leagueTable.getId().getTeam().equals(teamName)){
+//                response.add(leagueTable);
+//            }
+//        }
+//        return response;
+//    }
 }

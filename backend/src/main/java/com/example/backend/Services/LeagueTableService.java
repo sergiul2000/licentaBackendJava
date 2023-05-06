@@ -3,12 +3,14 @@ package com.example.backend.Services;
 import com.example.backend.Model.League;
 import com.example.backend.Model.LeagueTable;
 import com.example.backend.Model.LeagueTableEmbeddedId;
+import com.example.backend.Model.PlayerPassingStats;
 import com.example.backend.Repositories.LeagueRepo;
 import com.example.backend.Repositories.LeagueTableRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,21 +25,31 @@ public class LeagueTableService {
         return leagueTableRepo.findAll();
     }
 
-    public Optional<LeagueTable> getLeagueTableById(String teamName,Integer yearStart, Integer yearEnd) {
-        LeagueTableEmbeddedId id = new LeagueTableEmbeddedId(teamName,yearStart,yearEnd);
-//        System.out.println(id.getTeam()+id.getYear_start()+id.getYear_end());
+    public Optional<LeagueTable> getLeagueTableById(Integer id) {
         return leagueTableRepo.findById(id);
+    }
+    public List<LeagueTable> getLeagueTableByTeamAndYear(String teamName,Integer yearStart) {
+        List<LeagueTable> response = new ArrayList<>();
+        List<LeagueTable> allPlayers =  leagueTableRepo.findAll();
+        for(LeagueTable iterator : allPlayers){
+            if(iterator.getTeam_name().equals(teamName) && (iterator.getYear_start().intValue() == yearStart.intValue())){
+
+//                System.out.println(iterator.getTeam_name()+" "+(iterator.getYear_start() == yearStart));
+                response.add(iterator);
+            }
+        }
+        return response;
     }
 
     public LeagueTable saveLeagueTable(LeagueTable leagueTable) {
-        if(leagueTableRepo.existsById(leagueTable.getId())){
+        if(leagueTableRepo.existsById(leagueTable.getLeague_table_id())){
             return null;
         }
         return leagueTableRepo.save(leagueTable);
     }
 
-    public void deleteLeagueTable(String teamName,Integer yearStart,Integer yearEnd) {
-        LeagueTableEmbeddedId id = new LeagueTableEmbeddedId(teamName,yearStart,yearEnd);
+    public void deleteLeagueTable(Integer id) {
+//        LeagueTableEmbeddedId id = new LeagueTableEmbeddedId(teamName,yearStart,yearEnd);
         leagueTableRepo.deleteById(id);
     }
 

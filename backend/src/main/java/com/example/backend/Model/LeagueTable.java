@@ -16,15 +16,25 @@ import lombok.Setter;
 public class LeagueTable {
 //    @Column
 //    private String league_name;
+    @Id
+    private Integer league_table_id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "league_name", nullable = false,referencedColumnName = "league_name")
     private League league_name;
-    @EmbeddedId
-    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "team_name", nullable = false,referencedColumnName = "team_name")
-    private LeagueTableEmbeddedId id;
+//    @EmbeddedId
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+////    @ManyToOne(fetch = FetchType.LAZY)
+////    @JoinColumn(name = "team_name", nullable = false,referencedColumnName = "team_name")
+//    private LeagueTableEmbeddedId id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_name", nullable = false,referencedColumnName = "team_name")
+//    @MapsId("team_name")
+    private Team team_name ;
+    @Column
+    private Integer year_start;
+    @Column
+    private Integer year_end;
     @Column
     private Integer matches;
     @Column
@@ -78,13 +88,22 @@ public class LeagueTable {
         League league = new League(leagueName);
         this.league_name = league;
     }
-//    public LeagueTableEmbeddedId getId(){
-//        return LeagueTableEmbeddedId
-//    }
+    public String getTeam_name() {
+        return team_name.getTeam_name();
+    }
+    public void setTeam_name(String teamName) {
+        Team team = new Team(teamName);
+        this.team_name = team;
+    }
 
-
-    public LeagueTable(LeagueTableEmbeddedId id, Integer matches, Integer wins, Integer draws, Integer loses, Integer goals, Integer goalsAgainst, Integer pts, double xGoals, double npxGoals, double xGoalsAgainst, double npxGoalsAgainst, double npxGoalsDifference, double ppda, double oppda, double dc, double odc, League league_name) {
-        this.id = new LeagueTableEmbeddedId(id.getTeam(),id.getYear_start(),id.getYear_end());
+    public LeagueTable(Integer league_table_id, String league_name, String team_name, Integer year_start, Integer year_end, Integer matches, Integer wins, Integer draws, Integer loses, Integer goals, Integer goalsAgainst, Integer pts, double xGoals, double npxGoals, double xGoalsAgainst, double npxGoalsAgainst, double npxGoalsDifference, double ppda, double oppda, double dc, double odc) {
+        this.league_table_id = league_table_id;
+        League league = new League(league_name);
+        this.league_name = league;
+        Team team = new Team(team_name);
+        this.team_name = team;
+        this.year_start = year_start;
+        this.year_end = year_end;
         this.matches = matches;
         this.wins = wins;
         this.draws = draws;
@@ -101,7 +120,32 @@ public class LeagueTable {
         this.oppda = oppda;
         this.dc = dc;
         this.odc = odc;
-        this.league_name = league_name;
     }
 
+    @Override
+    public String toString() {
+        return "LeagueTable{" +
+                "defensive_id=" + league_table_id +
+                ", league_name=" + league_name.getLeague_name() +
+                ", team_name=" + team_name.getTeam_name() +
+                ", year_start=" + year_start +
+                ", year_end=" + year_end +
+                ", matches=" + matches +
+                ", wins=" + wins +
+                ", draws=" + draws +
+                ", loses=" + loses +
+                ", goals=" + goals +
+                ", goalsAgainst=" + goalsAgainst +
+                ", pts=" + pts +
+                ", xGoals=" + xGoals +
+                ", npxGoals=" + npxGoals +
+                ", xGoalsAgainst=" + xGoalsAgainst +
+                ", npxGoalsAgainst=" + npxGoalsAgainst +
+                ", npxGoalsDifference=" + npxGoalsDifference +
+                ", ppda=" + ppda +
+                ", oppda=" + oppda +
+                ", dc=" + dc +
+                ", odc=" + odc +
+                '}';
+    }
 }
