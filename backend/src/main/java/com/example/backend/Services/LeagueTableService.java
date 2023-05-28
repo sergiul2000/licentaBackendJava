@@ -28,18 +28,22 @@ public class LeagueTableService {
     public Optional<LeagueTable> getLeagueTableById(Integer id) {
         return leagueTableRepo.findById(id);
     }
-    public List<LeagueTable> getLeagueTableByTeamAndYear(String teamName,Integer yearStart) {
+    public List<LeagueTable> getLeagueLeagueByTeamAndYear(String leagueName,Integer yearStart) {
         List<LeagueTable> response = new ArrayList<>();
-        List<LeagueTable> allPlayers =  leagueTableRepo.findAll();
-        for(LeagueTable iterator : allPlayers){
-            if(iterator.getTeam_name().equals(teamName) && (iterator.getYear_start().intValue() == yearStart.intValue())){
+        List<LeagueTable> allTeams =  leagueTableRepo.findAll();
+        for(LeagueTable iterator : allTeams){
+//            System.out.println(iterator.getLeague_name()+" "+iterator.getYear_start().intValue());
+            if(iterator.getLeague_name().equals(leagueName) && (iterator.getYear_start().intValue() == yearStart.intValue())){
 
-//                System.out.println(iterator.getTeam_name()+" "+(iterator.getYear_start() == yearStart));
+//                System.out.println(iterator.getLeague_name()+" "+iterator.getYear_start().intValue());
                 response.add(iterator);
             }
         }
         return response;
     }
+
+
+
 
     public LeagueTable saveLeagueTable(LeagueTable leagueTable) {
         if(leagueTableRepo.existsById(leagueTable.getLeague_table_id())){

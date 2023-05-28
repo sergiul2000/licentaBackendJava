@@ -81,6 +81,19 @@ public class LeagueTableController {
         return true;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/{leagueName}/{yearStart}")
+    public List<LeagueTable> getLeagueTableByLeagueAndYearStart(@PathVariable String leagueName,@PathVariable Integer yearStart) {
+        List<LeagueTable>response = new ArrayList<>();
+        List<LeagueTable>leagueTables = leagueTableService.getLeagueLeagueByTeamAndYear(leagueName,yearStart);
+//        for(LeagueTable leagueTable:leagueTables){
+//            if(leagueTable.getId().getTeam().equals(teamName)){
+//                response.add(leagueTable);
+//            }
+//        }
+        return leagueTables;
+    }
+
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @GetMapping("/{teamName}")
 //    public List<LeagueTable> getLeagueTableByTeamName(@PathVariable String teamName) {

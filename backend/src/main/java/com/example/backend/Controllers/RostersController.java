@@ -1,6 +1,7 @@
 package com.example.backend.Controllers;
 
 import com.example.backend.Model.Rosters;
+import com.example.backend.Model.Team;
 import com.example.backend.Services.RostersService;
 import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 @RestController
@@ -119,6 +122,34 @@ public class RostersController {
         }
         return responseList;
     }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/{leagueName}/{yearStart}")
+    public List<String> getRostersByYearStartAndLeague(@PathVariable String leagueName,
+                                                     @PathVariable Integer yearStart) {
+//        List<String> responseList = new ArrayList<>();
+
+        Hashtable<String, String> hashResponseList = new Hashtable<>();
+        List<Rosters> rosters =rostersService.getAllRosters();
+        for(Rosters roster : rosters){
+//            System.out.println(roster.getLeague_name().getLeague_name());
+            if(roster.getLeague_name().getLeague_name().equals(leagueName) &&
+                    roster.getYear_start().intValue() == yearStart.intValue()){
+                hashResponseList.put(roster.getTeam_name().getTeam_name(),roster.getTeam_name().getTeam_name());
+            }
+
+        }
+        List<String> responseList = new ArrayList<>();
+        Enumeration<String> keys = hashResponseList.keys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+//            System.out.println("Key: " + key + ", Value: " + hashtable.get(key));
+            responseList.add(hashResponseList.get(key));
+        }
+        return responseList;
+    }
+
 
 //    @GetMapping("/playersRosters/{id}")
 //    public List<Rosters> getAllPlayersRosters(@PathVariable Integer id) {
