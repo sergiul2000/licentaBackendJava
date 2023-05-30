@@ -47,7 +47,7 @@ public class SimplePythagoreanController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{leagueName}/{yearStart}")
     public List<SimplePythagorean> getSimplePythagoreanByLeagueAndYearStart(@PathVariable String leagueName,@PathVariable Integer yearStart) {
-        List<SimplePythagorean>response = new ArrayList<>();
+//        List<SimplePythagorean>response = new ArrayList<>();
         List<SimplePythagorean>simplePythagoreans = simplePythagoreanService.getSimplePythagoreanByTeamAndYear(leagueName,yearStart);
         return simplePythagoreans;
     }
